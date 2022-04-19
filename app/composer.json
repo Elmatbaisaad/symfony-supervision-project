@@ -1,0 +1,13 @@
+{
+    
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "react/socket": "^1.11",
+        "php": "^8.0",
+        "ext-mbstring": "*",
+        "amphp/socket": "^1.2",
+        "psr/log": "^3.0",
+        "aldas/modbus-tcp-client": "^3.0"
+
+    }
+}

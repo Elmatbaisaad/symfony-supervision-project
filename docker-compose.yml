@@ -1,0 +1,91 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./app:/app
+    networks:
+      test_network:
+        ipv4_address: 172.25.0.2
+
+  php:
+    build:
+      context: .
+      dockerfile: PHP.Dockerfile
+    image: php_image:fpm
+    volumes:
+      - ./app:/app
+    depends_on:
+      - mypython
+    networks:
+      test_network:
+        ipv4_address: 172.25.0.4
+    
+        
+  
+  mysql:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'secret'
+      MYSQL_USER: 'saad'
+      MYSQL_PASSWORD: 'secret'
+      MYSQL_DATABASE: 'projet'
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: mysql
+
+  composer:
+        image: composer:2.1.14
+        command: ["composer", "install"]
+        volumes:
+            - ./app:/app
+
+
+
+  mypython:
+    container_name: fake_automate
+    tty: true
+    ports:
+      - '532:532'
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: python:fpm
+    volumes:
+      - ./app:/app
+    networks:
+      test_network:
+        ipv4_address: 172.25.0.3
+    
+    
+networks:
+  test_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
+    
+
+
+      
+
+
+  
+
+
+volumes:
+  mysqldata: {}
+     

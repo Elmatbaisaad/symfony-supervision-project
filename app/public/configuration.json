@@ -1,0 +1,40 @@
+{
+  "mot": [
+    {
+      "adresse": 0,
+      "valeur": 88
+    },
+    {
+      "adresse": 1,
+      "valeur": 5
+    },
+    {
+      "adresse": 2,
+      "valeur": 7
+    }
+  ],
+
+  "bit":[
+    {
+      "adresse":9,
+      "valeur":false
+    },
+    {
+      "adresse":11,
+      "valeur":"true"
+
+    },
+    {
+      "adresse":4,
+      "valeur":false
+    }
+   
+
+  ],
+  "serveur":[
+    {
+      "adresse":"172.25.0.3",
+      "port":532
+    }
+  ]
+}
