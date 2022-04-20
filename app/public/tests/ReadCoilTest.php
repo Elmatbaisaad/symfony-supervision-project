@@ -17,7 +17,7 @@ class ReadCoilTest extends TestCase
     public function initialisation()
     {
 
-        $this->assertEquals($this->coil->ip,'tcp://172.25.0.3:532');
+        //$this->assertEquals($this->coil->ip,'tcp://172.25.0.3:532');
         $this->assertEquals($this->coil->unitId,0);
 
     }
@@ -37,7 +37,6 @@ class ReadCoilTest extends TestCase
         $this->coil->setConnection(11);
         $this->coil->getReponse();
         $this->assertEquals($this->coil->reponse,true);
-
 
     }
 

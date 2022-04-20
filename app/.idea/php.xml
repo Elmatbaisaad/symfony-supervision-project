@@ -131,7 +131,6 @@
   <component name="PhpUnit">
     <phpunit_settings>
       <phpunit_by_interpreter interpreter_id="fa183193-8d5f-427c-bb55-4225b322fd0b" bootstrap_file_path="/app/vendor/autoload.php" custom_loader_path="/app/vendor/autoload.php" phpunit_phar_path="" use_bootstrap_file="true" />
-      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
       <phpunit_by_interpreter interpreter_id="0c024460-e693-46ef-aaa7-8ed10515db8d" configuration_file_path="/opt/project/phpunit.xml" custom_loader_path="/opt/project/vendor/autoload.php" use_configuration_file="true" />
     </phpunit_settings>
   </component>

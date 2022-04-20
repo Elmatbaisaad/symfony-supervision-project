@@ -17,7 +17,6 @@ class ReadRegistersTest extends TestCase
     /** @test */
     public function creating_ip_and_unit_id()
     {
-
         //$this->assertEquals($this->conn->ip,'tcp://127.0.0.1:532');
         $this->assertEquals($this->conn->unitID,0);
 
@@ -37,7 +36,6 @@ class ReadRegistersTest extends TestCase
         $this->conn->connection(2);
         $this->conn->getResponse();
         $this->assertEquals($this->conn->reponse,true);
-
     }
 
 }
