@@ -9,7 +9,8 @@ class ReadRegister
     public $unitID;
     public $fc3;
     public $message;
-    public $reponse;
+    public $reponse_data;//recuperation de la valeur
+    public $reponse_error;//recuperation de l'erreur s'il y'a
 
     public function setIp($ip)
     {
@@ -26,11 +27,11 @@ class ReadRegister
         $this->message = $msg;
     }
 
-    public function connection($adresse)
+    public function connection(int $adresse,string $name)
     {
         try {
             $this->fc3 = ReadRegistersBuilder::newReadHoldingRegisters($this->ip,$this->unitID)
-                ->int16($adresse,'read_register')
+                ->int16($adresse,$name)
                 ->build();
             $this->setMessageDeRetour('build succés');
 
@@ -42,8 +43,10 @@ class ReadRegister
     public function getResponse()
     {
         $reponseContainer = (new NonBlockingClient(['readTimeoutSec' => 0.2]))->sendRequests($this->fc3);
-        $this->reponse = print_r($reponseContainer->getData());
-        $this->reponse = print_r($reponseContainer->getErrors());
+        $this->reponse_data =$reponseContainer->getData();
+        print_r($this->reponse_data);
+        $this->reponse_error = $reponseContainer->getErrors();
+        print_r($this->reponse_error);
     }
 
 }

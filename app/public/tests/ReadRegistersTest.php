@@ -26,16 +26,18 @@ class ReadRegistersTest extends TestCase
     public function creating_connection()
     {
 
-        $this->conn->connection(2);
+        $this->conn->connection(2,'my_register');
         $this->assertEquals($this->conn->message,'build succés');
     }
 
     /** @test */
     public function receiving_the_right_value_of_register()
     {
-        $this->conn->connection(2);
+        $this->conn->connection(2,'my_register');
         $this->conn->getResponse();
-        $this->assertEquals($this->conn->reponse,true);
+        $this->assertArrayHasKey('my_register',$this->conn->reponse_data);
+        $this->assertEquals($this->conn->reponse_data['my_register'],7);
+
     }
 
 }

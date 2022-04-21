@@ -16,4 +16,13 @@ class ExampleAssertionsTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(10,10);
     }
 
+    public function test_array(){
+        $array = [
+            'read_register'=>1
+        ];
+
+        $this->assertArrayHasKey('read_register',$array);
+        $this->assertEquals($array['read_register'],1);
+    }
+
 }

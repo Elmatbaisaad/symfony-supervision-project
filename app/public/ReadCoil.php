@@ -9,7 +9,8 @@ class ReadCoil
     public $unitId;
     public $connection;
     public $message;
-    public $reponse;
+    public $reponse_data; //recuperation de la valeur
+    public $reponse_error; //recuperation de l'erreur s'il y'a
 
     public function setIp($ip)
     {
@@ -26,11 +27,11 @@ class ReadCoil
         $this->message = $msg;
     }
 
-    public function setConnection(int $adresse)
+    public function setConnection(int $adresse, string $name)
     {
         try {
             $this->connection = ReadCoilsBuilder::newReadCoils($this->ip)
-                ->coil($adresse,'premiere_coil')
+                ->coil($adresse,$name)
                 ->build();
             $this->setMessage('build succes');
         }catch (Exception $e){
@@ -41,9 +42,11 @@ class ReadCoil
 
     public function getReponse()
     {
-        $reponseContainer = (new NonBlockingClient(['readTimeoutSec' => 0.2]))->sendRequests($this->connection);
-        $this->reponse = print_r($reponseContainer->getData());
-        $this->reponse = print_r($reponseContainer->getErrors());
+        $reponseContainer = (new NonBlockingClient(['readTimeoutSec' => 0.8]))->sendRequests($this->connection);
+        $this->reponse_data =$reponseContainer->getData();
+        print_r($this->reponse_data);
+        $this->reponse_error = $reponseContainer->getErrors();
+        print_r($this->reponse_error);
     }
 
 }
