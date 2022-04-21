@@ -44,9 +44,9 @@ class ReadCoil
     {
         $reponseContainer = (new NonBlockingClient(['readTimeoutSec' => 0.8]))->sendRequests($this->connection);
         $this->reponse_data =$reponseContainer->getData();
-        print_r($this->reponse_data);
         $this->reponse_error = $reponseContainer->getErrors();
-        print_r($this->reponse_error);
+
     }
+
 
 }

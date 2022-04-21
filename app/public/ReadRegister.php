@@ -2,7 +2,6 @@
 
 use ModbusTcpClient\Composer\Read\ReadRegistersBuilder;
 use ModbusTcpClient\Network\NonBlockingClient;
-
 class ReadRegister
 {
     public $ip;
@@ -44,9 +43,8 @@ class ReadRegister
     {
         $reponseContainer = (new NonBlockingClient(['readTimeoutSec' => 0.2]))->sendRequests($this->fc3);
         $this->reponse_data =$reponseContainer->getData();
-        print_r($this->reponse_data);
         $this->reponse_error = $reponseContainer->getErrors();
-        print_r($this->reponse_error);
+
     }
 
 }

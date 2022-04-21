@@ -1,0 +1,39 @@
+{
+  "serveur":{
+
+  "ip": "tcp://172.25.0.3:532",
+    "unitId": 0
+  },
+  "mot": [
+    {
+      "id": "sonde Oxygene",
+      "adresse": 0
+    },
+    {
+      "id": "Sonde de Niveau",
+      "adresse": 1
+    },
+    {
+      "id": "Sonde de Pression",
+      "adresse": 2
+    }
+  ],
+
+  "bit":[
+    {
+      "id":"Alarm OFF",
+      "adresse":9
+    },
+    {
+      "id":"Pump ON",
+      "adresse":11
+
+    },
+    {
+      "id":"Filtre ON",
+      "adresse":4
+    }
+
+
+  ]
+}

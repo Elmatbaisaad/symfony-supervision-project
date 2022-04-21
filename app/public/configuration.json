@@ -2,22 +2,22 @@
   "mot": [
     {
       "adresse": 0,
-      "valeur": 88
+      "valeur": 9.9
     },
     {
       "adresse": 1,
-      "valeur": 5
+      "valeur": 98
     },
     {
       "adresse": 2,
-      "valeur": 7
+      "valeur": 216
     }
   ],
 
   "bit":[
     {
       "adresse":9,
-      "valeur":false
+      "valeur":"true"
     },
     {
       "adresse":11,
