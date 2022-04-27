@@ -13,6 +13,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
+
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
@@ -20,6 +24,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
 
 RUN apt-get update && apt-get install -y iputils-ping
 
+RUN git config --global user.email "elmatbaisaad@gmail.com" \ 
+    && git config --global user.name "Elmatbaisaad"
 WORKDIR /app
 
 

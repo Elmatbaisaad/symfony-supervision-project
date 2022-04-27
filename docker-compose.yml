@@ -15,6 +15,8 @@ services:
     build:
       context: .
       dockerfile: PHP.Dockerfile
+    ports:
+      - 5000:8000
     image: php_image:fpm
     volumes:
       - ./app:/app
@@ -23,11 +25,14 @@ services:
     networks:
       test_network:
         ipv4_address: 172.25.0.4
+    links:
+      - mysql
     
         
   
   mysql:
     image: mariadb:latest
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'secret'
       MYSQL_USER: 'saad'
@@ -37,6 +42,9 @@ services:
       - mysqldata:/var/lib/mysql
     ports:
       - 3306:3306
+    networks:
+      test_network:
+        ipv4_address: 172.25.0.5
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -45,12 +53,16 @@ services:
       - "8082:80"
     environment:
       PMA_HOST: mysql
+    networks:
+      test_network:
+        ipv4_address: 172.25.0.6
 
   composer:
         image: composer:2.1.14
         command: ["composer", "install"]
         volumes:
             - ./app:/app
+
 
 
 
