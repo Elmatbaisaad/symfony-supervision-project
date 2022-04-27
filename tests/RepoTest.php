@@ -20,6 +20,7 @@ class RepoTest extends TestCase
         $repo = new Repo();
         $repo->chercherValeurBobine('Alarm OFF');
         $this->assertEquals($repo->valeurCoil,true);
+        $this->assertEquals(1,1);
     }
 
 }
