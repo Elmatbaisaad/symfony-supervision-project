@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="row">
+        <div class="rectangle col-5" >
+            <h4>la sonde d'oxygene</h4>
+            <ul>
+                <li >
+                    {{ sonde_oxygen }}
+                    <div id="sonde_oxygen" >
+                        {{ oxygen  }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <div class="rectangle col-5">
+            <h4>Sonde de Niveau</h4>
+            <ul>
+                <li>
+                    {{ sonde_niveau }}
+                    <div id="sonde_niveau">
+                        {{ niveau }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <div class="rectangle col-5">
+            <h4>Sonde de Pression</h4>
+            <ul>
+                <li>
+                    {{ sonde_pression}}
+                    <div id="sonde_pump">
+                        {{ pression }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+                <br><br>
+    <div class="row">
+        <div class="rectangle col-5">
+            <h4>Filtre ON</h4>
+            <ul>
+                <li>
+                    {{ filtre_on }}
+                    <div id="bobine_filtre">
+                        {{ f_on }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+
+        <div class="rectangle col-5">
+            <h4>Alarm OFF</h4>
+            <ul>
+                <li>
+                    {{ alarm_off }}
+                    <div id="bobine_alarm">
+                        {{ a_off}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        &nbsp;&nbsp;&nbsp;
+        <div class="rectangle col-5">
+            <h4>Pump ON</h4>
+            <ul>
+                <li>
+                    {{ pump_on }}
+                    <div id="bobine_pump">
+                        {{ p_on }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        var data = {request :document.getElementById('sonde_o')};
+        setInterval(function (){
+            $.ajax({
+                type:"GET",
+                url: "{{ path('JsonValue')}}",
+                dataType: 'json',
+                data:data,
+                success: function (result){
+                    document.getElementById('sonde_oxygen').innerText = result['oxygen']
+                    document.getElementById('sonde_niveau').innerText = result['niveau']
+                    document.getElementById('sonde_pump').innerText = result['pression']
+
+                    if (result['f_on'] === true){
+                        document.getElementById('bobine_filtre').innerText = 'ON'
+                    }else{
+                        document.getElementById('bobine_filtre').innerText = 'OFF'
+                    }
+
+                    if (result['a_off'] === true){
+                        document.getElementById('bobine_alarm').innerText = 'ON'
+
+                    }else {
+                        document.getElementById('bobine_alarm').innerText = 'OFF'
+                    }
+
+                    if (result['p_on'] === true){
+                        document.getElementById('bobine_pump').innerText = 'ON'
+                    }else{
+                        document.getElementById('bobine_pump').innerText = 'OFF'
+                    }
+                }
+            })
+            console.log(document.getElementById('sonde'))
+        },4000)
+</script>
+{% endblock %}
