@@ -29,7 +29,7 @@ class ReadRegister
         $this->message = $msg;
     }
 
-    public function connection(int $adresse,string $name)
+    public function connection( $adresse,string $name)
     {
         try {
             $this->fc3 = ReadRegistersBuilder::newReadHoldingRegisters($this->ip,$this->unitID)

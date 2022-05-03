@@ -11,7 +11,7 @@ class RepoTest extends TestCase
     {
         $repo = new Repo();
         $repo->chercherValeurRegister('sonde Oxygene');
-        $this->assertEquals($repo->valeurRegister,9);
+        $this->assertEquals($repo->valeurRegister,990);
     }
 
     /** @test */
@@ -20,7 +20,8 @@ class RepoTest extends TestCase
         $repo = new Repo();
         $repo->chercherValeurBobine('Alarm OFF');
         $this->assertEquals($repo->valeurCoil,true);
-        $this->assertEquals(1,1);
+        $repo->chercherValeurBobine('Filtre ON');
+        $this->assertEquals($repo->valeurCoil,false);
     }
 
 }

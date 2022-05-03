@@ -39,7 +39,7 @@ class ReadCoil
                 ->build();
             $this->setMessage('build succes');
         }catch (Exception $e){
-            echo 'build error';
+            $this->setMessage('build erreur');
         }
     }
 

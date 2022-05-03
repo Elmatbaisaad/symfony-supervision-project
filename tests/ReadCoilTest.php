@@ -36,5 +36,13 @@ class ReadCoilTest extends TestCase
         $this->assertIsArray($this->coil->reponse_data,'pas array');
         $this->assertEquals($this->coil->reponse_data['my_coil'],true);
     }
+    
+    /** @test  */
+    public function building_is_failed()
+    {
+        $build = new ReadCoil();
+        $build->setConnection(2,'build');
+        $this->assertEquals($build->message,'build erreur');
+    }
 
 }

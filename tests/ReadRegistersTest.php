@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 class ReadRegistersTest extends TestCase
 {
     protected $conn;
-
     protected function setUp():void
     {
         $this->conn = new ReadRegister();
@@ -35,6 +34,16 @@ class ReadRegistersTest extends TestCase
         $this->conn->getResponse();
         $this->assertArrayHasKey('Sonde de Pression',$this->conn->reponse_data);
         $this->assertEquals($this->conn->reponse_data['Sonde de Pression'],216);
+    }
+
+    /** @test */
+    public function building_is_failed()
+    {
+        $build = new ReadRegister();
+        $build->setUnitID(0);
+        $build->connection(10,'cc');
+        $this->assertEquals($build->message,'build erreur');
+
     }
 
 }

@@ -1,7 +1,7 @@
 {
   "serveur":{
 
-  "ip": "tcp://172.25.0.3:532",
+    "ip": "tcp://192.36.39.167:502",
     "unitId": 0
   },
   "mot": [
@@ -11,27 +11,27 @@
     },
     {
       "id": "Sonde de Niveau",
-      "adresse": 1
+      "adresse": 3
     },
     {
       "id": "Sonde de Pression",
-      "adresse": 2
+      "adresse": 32
     }
   ],
 
   "bit":[
     {
       "id":"Alarm OFF",
-      "adresse":9
+      "adresse":408
     },
     {
       "id":"Pump ON",
-      "adresse":11
+      "adresse":45
 
     },
     {
       "id":"Filtre ON",
-      "adresse":4
+      "adresse":24
     }
 
 
