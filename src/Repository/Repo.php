@@ -5,6 +5,7 @@ class Repo
 {
     public $valeurRegister;
     public $valeurCoil;
+    public $message;
 
     public function chercherValeurRegister(string $id)
     {
@@ -30,14 +31,20 @@ class Repo
         $donnees = file_get_contents($file);
         $decode = json_decode($donnees);
 
+        $file2 = __DIR__ . '/conf_alarm.json';
+        $alarm_message = file_get_contents($file2);
+        $conf_alarm = json_decode($alarm_message);
+
+
         $coil = new ReadCoil();
         $coil->setIp($decode->{'serveur'}->{'ip'});
         for ($i=0;$i<count($decode->{'bit'});$i++)
         {
             $coil->setConnection($decode->{'bit'}[$i]->{'adresse'},$decode->{'bit'}[$i]->{'id'});
             $coil->getReponse();
-            if ($id == $decode->{'bit'}[$i]->{'id'})
+            if ($id == $decode->{'bit'}[$i]->{'id'} and $id == $conf_alarm->{'alarm'}[$i]->{'id'})
             {
+                $this->message = $conf_alarm->{'alarm'}[$i]->{'message'};
                 if ( $coil->reponse_data[$decode->{'bit'}[$i]->{'id'}]==false)
                 {
                     $this->valeurCoil= 0;

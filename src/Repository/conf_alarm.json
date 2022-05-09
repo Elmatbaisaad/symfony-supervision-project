@@ -1,0 +1,16 @@
+{
+    "alarm":[
+        {
+            "id" : "Alarm OFF",
+            "message" : "Le niveau d'eau est bas"
+        },
+        {
+            "id" : "Pump ON",
+            "message" : "La pompe est arrêtée"
+        },
+        {
+            "id" : "Filtre ON",
+            "message" : "Le filtre est arrêté"
+        }
+    ]
+}

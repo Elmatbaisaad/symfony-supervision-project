@@ -49,6 +49,11 @@
                         {{ f_on }}
                     </div>
                 </li>
+                <div id="message_filtre">
+                <li>
+                    {{ message_filtre }}
+                </li>
+                </div>
             </ul>
         </div>
         &nbsp;&nbsp;&nbsp;
@@ -62,6 +67,11 @@
                         {{ a_off}}
                     </div>
                 </li>
+                <div id="message_alarm">
+                <li>
+                    {{ message_alarm }}
+                </li>
+                </div>
             </ul>
         </div>
         &nbsp;&nbsp;&nbsp;
@@ -74,46 +84,14 @@
                         {{ p_on }}
                     </div>
                 </li>
+                <div id="message_pompe">
+                <li>
+                    {{ message_pump }}
+                </li>
+                </div>
             </ul>
         </div>
     </div>
 
 {% endblock %}
-{% block javascripts %}
-    <script>
-        var data = {request :document.getElementById('sonde_o')};
-        setInterval(function (){
-            $.ajax({
-                type:"GET",
-                url: "{{ path('JsonValue')}}",
-                dataType: 'json',
-                data:data,
-                success: function (result){
-                    document.getElementById('sonde_oxygen').innerText = result['oxygen']
-                    document.getElementById('sonde_niveau').innerText = result['niveau']
-                    document.getElementById('sonde_pump').innerText = result['pression']
 
-                    if (result['f_on'] === true){
-                        document.getElementById('bobine_filtre').innerText = 'ON'
-                    }else{
-                        document.getElementById('bobine_filtre').innerText = 'OFF'
-                    }
-
-                    if (result['a_off'] === true){
-                        document.getElementById('bobine_alarm').innerText = 'ON'
-
-                    }else {
-                        document.getElementById('bobine_alarm').innerText = 'OFF'
-                    }
-
-                    if (result['p_on'] === true){
-                        document.getElementById('bobine_pump').innerText = 'ON'
-                    }else{
-                        document.getElementById('bobine_pump').innerText = 'OFF'
-                    }
-                }
-            })
-            console.log(document.getElementById('sonde'))
-        },4000)
-</script>
-{% endblock %}

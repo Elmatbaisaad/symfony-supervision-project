@@ -24,4 +24,12 @@ class RepoTest extends TestCase
         $this->assertEquals($repo->valeurCoil,false);
     }
 
+    /** @test */
+    public function verifying_the_message_alarm()
+    {
+        $repo = new Repo();
+        $repo->chercherValeurBobine('Alarm OFF');
+        $this->assertEquals($repo->message,'Le niveau d\'eau est bas');
+    }
+
 }

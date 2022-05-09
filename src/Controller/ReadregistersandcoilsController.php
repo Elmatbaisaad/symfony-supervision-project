@@ -2,10 +2,8 @@
 namespace App\Controller;
 use App\Repository\Repo;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class ReadregistersandcoilsController extends AbstractController
 {
@@ -28,19 +26,23 @@ class ReadregistersandcoilsController extends AbstractController
             'pression'=>$this->conversion($repo->valeurRegister),
             'filtre_on'=>$repo->chercherValeurBobine('Filtre ON'),
             'f_on'=>$repo->valeurCoil,
+            'message_filtre'=>$repo->message,
             'alarm_off'=>$repo->chercherValeurBobine('Alarm OFF'),
             'a_off'=>$repo->valeurCoil,
+            'message_alarm'=>$repo->message,
             'pump_on'=>$repo->chercherValeurBobine('Pump ON'),
             'p_on'=>$repo->valeurCoil,
+            'message_pump'=>$repo->message,
             ]);
     }
 
 
 
-/** @Route ("/JsonValue", name="JsonValue")*/
+/** @Route ("/JsonValue", options={"expose"=true} ,name="JsonValue")*/
     public function jsonValue():Response
     {
         $repo = new Repo();
+
         return $this->json([
             'sonde_oxygen'=>$repo->chercherValeurRegister( 'sonde Oxygene'),
             'oxygen'=>$this->conversion($repo->valeurRegister),

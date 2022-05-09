@@ -22,16 +22,19 @@
   "bit":[
     {
       "id":"Alarm OFF",
-      "adresse":408
+      "adresse":408,
+      "message": "Le niveau d'eau est bas"
     },
     {
       "id":"Pump ON",
-      "adresse":45
+      "adresse":45,
+      "message": "La pompe est arrêtée"
 
     },
     {
       "id":"Filtre ON",
-      "adresse":24
+      "adresse":24,
+      "message": "Le filtre est arrêtée"
     }
 
 
