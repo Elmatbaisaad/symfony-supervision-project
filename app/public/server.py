@@ -2,6 +2,8 @@ from pyModbusTCP.server import ModbusServer, DataBank
 from random import uniform
 import json
 
+
+
 with open('configuration.json','r') as f:
     data = json.load(f)
 
@@ -50,6 +52,7 @@ try:
     
     while True:
         continue
+        
         
         
         
